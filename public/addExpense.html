@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://cdn.jsdelivr.net;">
+    <link rel="shortuct icon" type="image/x-icon" href="./funds-fill.svg">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <title>E-tracker </title>
+    <style>
+        #msg{
+            color:red;
+          }
+          #downloadedfilesdiv{
+            display:none;
+          }
+          #leaderboardbtn,#downloadbtn,#downloadedfilesbtn{
+            display:none;
+          }
+          #downloadedfileslist{
+            padding-top:50px;
+            display:grid;
+            grid-template-columns: auto auto auto;
+          }
+          *{
+            font-size: 15px;
+          }
+          .btn{
+            font-size: medium;
+          }
+    </style>
+</head>
+<body  style="width:1920px;height: 911px;background-color:rgb(234, 235, 239);position: absolute;border: 50px solid rgb(234, 235, 239);">
+    <div style="background-color: rgb(234, 235, 239)">
+    <div  class="main-container row rounded bg-white shadow box-area " style="width:1840px;height: 850px;background-color: rgb(255, 255, 255);">
+        <div class="container-1 col-3" style="height:450px;width:400px;padding-top: 3%;">
+            <form id="myform" class="form w-100 ps-5 pt-0 pb-3 pe-3">
+                <h4 class="text-center">E-TRACKER</h4>
+                <div id="msg">
+                </div>
+                <hr>
+            <div class="group">
+            <input type="number" id="amount" class="form-control" placeholder="Enter your Expense" required><br>
+            </div>
+            <input type="datetime" class="form-control " id="date" placeholder="Date and time here"required><br>
+            <input type="text" class="form-control" id="reason" placeholder="Description"required><br>
+            <select  id="category" class="form-select" required><Br>
+                <option>Movie</option>
+                <option>Food</option>
+                <option>Shopping</option>
+                <option>Bills</option>
+                <option>Rent</option>
+                <option>Others</option>
+            </select><br>
+                <button id="add" class="btn btn-success w-100">Add Expense</button>
+                <hr>
+        </form>
+        
+       
+        
+       
+        <div class="ps-5 pt-0 pe-3 mt-0">
+            <h6 id="premiummsg" class="text-center" style="color: #0f7813;"></h6>
+            <button id="downloadbtn" class="btn btn-outline-primary w-100">Download Expenses</button> &nbsp
+            <button id="downloadedfilesbtn" class="btn btn-outline-primary w-100 " style="margin-bottom: 0%;">Download History</button>
+                 <div id="downloadedfilesdiv" class="mb-0">
+                    <ol id="downloadedfileslist" class="mb-0">
+                    </ol>
+                </div>
+        </div>
+        <div class="row">
+            <div class="container-2 col-3">
+               
+            <div id="leaderboarddetails" class="ps-5 pt-0 pe-3">
+                <table style="width:300px" >
+                    <thead id="tableid" style="visibility: hidden;">
+                    <tr >
+                    </tr>
+                </thead>
+                <tbody id="leaderboardtablebody">
+                </tbody>
+                </table><br>
+
+                </div>
+        </div></div>
+        <div class="total ps-5 pt-0 pe-3" >
+            <button id="premiumbtn" class="btn btn-primary w-100" >Buy Premium</button>
+            <button id="leaderboardbtn" class="btn btn-primary w-100 mt-3" >Check Leader Board</button>
+            <button class="btn btn-danger w-100 mt-3"  id="logout">Logout from E-tracker</button>
+        </div>
+        
+        
+       
+    </div>
+        <div class="container col-1" style="border-right: #d3d3d3 1px solid;height: 850px;width: 50px;margin-left: 0%;margin-right: 0%;"></div>
+            <div class="container3 col-8 ms-4 overflow-auto"style=" height:850px;width:1340px;">
+            <h1 class="text-center mt-3">Expenses</h1><hr>
+        <table class="table text-center" >
+            <thead class="table-dark">
+            <tr>
+                <th>Date and Time</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody id="expenseslist">
+        </tbody>
+        </table>
+        <div id="pages" class="text-center">
+        </div>
+        <div class="track-table row">
+            <h6 class="col-2 pt-2">Set Page Limit</h6>
+            <select id="limit" class="form-select col-2" style="width:1%">
+                <option></option>
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+            </select>
+            
+        </div><br><br>
+        <div class="row" style="margin-right: 75%;" >
+        <h6 class="col" >Total Expenses </h6> &nbsp;
+        <p id="totalexpense" class=" text-center col border-0 m-0 p-0 " style="color: rgb(30, 200, 4);font-weight: 700;font-size: 25px;">0</p><br>
+        </div>
+        </div>
+        
+    </div>
+            
+        
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="./addexpense.js"></script>
+    </div></div>
+</body>
+</html>
